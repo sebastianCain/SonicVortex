@@ -51,7 +51,7 @@
 
 - (bool)toggleFx:(float)cadence {
     bool enabled = (player->tempo != 1.0f);
-    player->setTempo(enabled ? 1.0f : cadence, true);
+    player->setTempo(enabled ? 1.0f : (cadence/(player->bpm/60)), true);
     return !enabled;
 }
 
