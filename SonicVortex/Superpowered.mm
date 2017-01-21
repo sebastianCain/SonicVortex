@@ -75,11 +75,11 @@ static bool audioProcessing(void *clientdata, float **buffers, unsigned int inpu
     __unsafe_unretained Superpowered *self = (__bridge Superpowered *)clientdata;
     uint64_t startTime = mach_absolute_time();
 
-    if (samplerate != self->lastSamplerate) { // Has samplerate changed?
+    /*if (samplerate != self->lastSamplerate) { // Has samplerate changed?
         self->lastSamplerate = samplerate;
         self->player->setSamplerate(samplerate);
         for (int n = 2; n < NUMFXUNITS; n++) self->effects[n]->setSamplerate(samplerate);
-    };
+    };*/
     
     // We're keeping our Superpowered time-based effects in sync with the player... with one line of code. Not bad, eh?
     //((SuperpoweredRoll *)self->effects[ROLLINDEX])->bpm = ((SuperpoweredFlanger *)self->effects[FLANGERINDEX])->bpm = ((SuperpoweredEcho *)self->effects[DELAYINDEX])->bpm = self->player->currentBpm;
