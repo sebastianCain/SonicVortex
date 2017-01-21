@@ -26,6 +26,7 @@
 		0A425ECA1E3306B200836261 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A425EC91E3306B200836261 /* AVKit.framework */; };
 		0A425ECC1E3306BA00836261 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A425ECB1E3306BA00836261 /* CoreMotion.framework */; };
 		0A425ECF1E3331C700836261 /* Superpowered.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A425ECE1E3331C700836261 /* Superpowered.mm */; };
+		60079C5D1E333FF700B79144 /* CoreMotionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60079C5C1E333FF700B79144 /* CoreMotionInterface.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		0A425ECB1E3306BA00836261 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		0A425ECD1E332A6500836261 /* SonicVortex-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SonicVortex-Swift.h"; sourceTree = "<group>"; };
 		0A425ECE1E3331C700836261 /* Superpowered.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Superpowered.mm; sourceTree = "<group>"; };
+		60079C5C1E333FF700B79144 /* CoreMotionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreMotionInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				0A425E741E32FDBD00836261 /* AppDelegate.swift */,
 				0A425E761E32FDBD00836261 /* ViewController.swift */,
+				60079C5C1E333FF700B79144 /* CoreMotionInterface.swift */,
 				0A425ECD1E332A6500836261 /* SonicVortex-Swift.h */,
 				0A425E781E32FDBD00836261 /* Main.storyboard */,
 				0A425E7B1E32FDBD00836261 /* Assets.xcassets */,
@@ -228,6 +231,7 @@
 			files = (
 				0A425E771E32FDBD00836261 /* ViewController.swift in Sources */,
 				0A425E751E32FDBD00836261 /* AppDelegate.swift in Sources */,
+				60079C5D1E333FF700B79144 /* CoreMotionInterface.swift in Sources */,
 				0A425ECF1E3331C700836261 /* Superpowered.mm in Sources */,
 				0A425EC01E3303FE00836261 /* SuperpoweredIOSAudioIO.mm in Sources */,
 			);
