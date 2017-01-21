@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         superpowered.toggle()
+        CoreMotionInterface.beginTracking()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +29,11 @@ class ViewController: UIViewController {
 
     @IBAction func playTriggered(_ sender: UIButton) {
         superpowered.togglePlayback()
+        if (CoreMotionInterface.isTracking) {
+            CoreMotionInterface.endTracking()
+        } else {
+            CoreMotionInterface.beginTracking()
+        }
     }
     
     @IBAction func tempoTriggered(_ sender: UIButton) {

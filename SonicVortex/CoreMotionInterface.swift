@@ -9,13 +9,27 @@
 import UIKit
 import CoreMotion
 class CoreMotionInterface: NSObject {
-    let activityManager = CMMotionActivityManager()
-    let pedoMeter = CMPedometer()
+    static let activityManager = CMMotionActivityManager()
+    static let pedoMeter = CMPedometer()
     
-    func begin() {
-        pedoMeter.startUpdates(from: Date(), withHandler: { cmpd, error in
-            let cad = cmpd?.currentCadence?.floatValue
-            print(cad)
+    static func beginTracking() {
+        print(CMPedometer.isCadenceAvailable())
+        let date = Date()
+        pedoMeter.startUpdates(from: date, withHandler: { cmpd, error in
+            if (error == nil) {
+                let cad = cmpd!.currentCadence
+                print("Cadence \(cad)")
+            } else {
+                print(error?.localizedDescription)
+            }
         })
+        isTracking = true
     }
+    
+    static func endTracking() {
+        pedoMeter.stopUpdates()
+        isTracking = false
+    }
+    
+    static var isTracking = true
 }

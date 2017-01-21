@@ -18,7 +18,6 @@
 		0A425E7A1E32FDBD00836261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A425E781E32FDBD00836261 /* Main.storyboard */; };
 		0A425E7C1E32FDBD00836261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A425E7B1E32FDBD00836261 /* Assets.xcassets */; };
 		0A425E7F1E32FDBD00836261 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A425E7D1E32FDBD00836261 /* LaunchScreen.storyboard */; };
-		0A425E871E33020F00836261 /* Superpowered in Resources */ = {isa = PBXBuildFile; fileRef = 0A425E861E33020F00836261 /* Superpowered */; };
 		0A425EBD1E3303FE00836261 /* libSuperpoweredAudioIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A425E931E3303FE00836261 /* libSuperpoweredAudioIOS.a */; };
 		0A425EC01E3303FE00836261 /* SuperpoweredIOSAudioIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A425EA71E3303FE00836261 /* SuperpoweredIOSAudioIO.mm */; };
 		0A425EC61E3306A600836261 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A425EC51E3306A600836261 /* CoreAudio.framework */; };
@@ -47,7 +46,6 @@
 		0A425E7B1E32FDBD00836261 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A425E7E1E32FDBD00836261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A425E801E32FDBD00836261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A425E861E33020F00836261 /* Superpowered */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Superpowered; path = /Users/sebastiancain/development/SonicVortex/SonicVortex/Superpowered; sourceTree = "<absolute>"; };
 		0A425E931E3303FE00836261 /* libSuperpoweredAudioIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSuperpoweredAudioIOS.a; sourceTree = "<group>"; };
 		0A425E971E3303FE00836261 /* SuperpoweredAdvancedAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredAdvancedAudioPlayer.h; sourceTree = "<group>"; };
 		0A425EA01E3303FE00836261 /* SuperpoweredFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredFFT.h; sourceTree = "<group>"; };
@@ -186,7 +184,7 @@
 				TargetAttributes = {
 					0A425E701E32FDBC00836261 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7FCVG3W4N4;
+						DevelopmentTeam = HV4B5F752N;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -215,7 +213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A425E7F1E32FDBD00836261 /* LaunchScreen.storyboard in Resources */,
-				0A425E871E33020F00836261 /* Superpowered in Resources */,
 				0A4084E61E3335B800B2412D /* oroshi.mp3 in Resources */,
 				0A425E7C1E32FDBD00836261 /* Assets.xcassets in Resources */,
 				0A425E7A1E32FDBD00836261 /* Main.storyboard in Resources */,
@@ -356,14 +353,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7FCVG3W4N4;
+				DEVELOPMENT_TEAM = HV4B5F752N;
 				INFOPLIST_FILE = SonicVortex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SonicVortex/Superpowered",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.isometricstudios.SonicVortex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noahfichter.SonicVortex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = SonicVortex;
 				SWIFT_OBJC_BRIDGING_HEADER = "SonicVortex/SonicVortex-Swift.h";
@@ -375,14 +372,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7FCVG3W4N4;
+				DEVELOPMENT_TEAM = HV4B5F752N;
 				INFOPLIST_FILE = SonicVortex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SonicVortex/Superpowered",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.isometricstudios.SonicVortex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noahfichter.SonicVortex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = SonicVortex;
 				SWIFT_OBJC_BRIDGING_HEADER = "SonicVortex/SonicVortex-Swift.h";
