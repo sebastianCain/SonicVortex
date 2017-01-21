@@ -28,12 +28,12 @@
 
  @since Multi-channel output is available in iOS 6.0 and later.
 
- @param deviceChannels The iOS device's built-in output channels.
- @param HDMIChannels HDMI output channels.
- @param USBChannels USB output channels.
- @param numberOfHDMIChannelsAvailable Number of available HDMI output channels. Read only.
- @param numberOfUSBChannelsAvailable Number of available USB output channels. Read only.
- @param headphoneAvailable Something is plugged into the iOS device's headphone socket or not. Read only.
+ param deviceChannels The iOS device's built-in output channels.
+ param HDMIChannels HDMI output channels.
+ param USBChannels USB output channels.
+ param numberOfHDMIChannelsAvailable Number of available HDMI output channels. Read only.
+ param numberOfUSBChannelsAvailable Number of available USB output channels. Read only.
+ param headphoneAvailable Something is plugged into the iOS device's headphone socket or not. Read only.
  */
 typedef struct multiOutputChannelMap {
     // Information you provide:
@@ -56,8 +56,8 @@ typedef struct multiOutputChannelMap {
  @since Available in iOS 6.0 and later.
  @see @c multiOutputChannelMap
 
- @param USBChannels Example: set USBChannels[0] to 3, to receive the input of the third USB channel on the first buffer.
- @param numberOfUSBChannelsAvailable Number of USB input channels.
+ param USBChannels Example: set USBChannels[0] to 3, to receive the input of the third USB channel on the first buffer.
+ param numberOfUSBChannelsAvailable Number of USB input channels.
  */
 typedef struct multiInputChannelMap {
     int USBChannels[32]; // You provide this.
@@ -71,13 +71,13 @@ typedef struct multiInputChannelMap {
  
  @return Return false for no audio output (silence).
 
- @param clientData A custom pointer your callback receives.
- @param buffers Input-output buffers.
- @param inputChannels The number of input channels.
- @param outputChannels The number of output channels.
- @param numberOfSamples The number of samples requested.
- @param samplerate The current sample rate in Hz.
- @param hostTime A mach timestamp, indicates when this chunk of audio will be passed to the audio output.
+ param clientData A custom pointer your callback receives.
+ param buffers Input-output buffers.
+ param inputChannels The number of input channels.
+ param outputChannels The number of output channels.
+ param numberOfSamples The number of samples requested.
+ param samplerate The current sample rate in Hz.
+ param hostTime A mach timestamp, indicates when this chunk of audio will be passed to the audio output.
  */
 typedef bool (*audioProcessingCallback) (void *clientdata, float **buffers, unsigned int inputChannels, unsigned int outputChannels, unsigned int numberOfSamples, unsigned int samplerate, uint64_t hostTime);
 
@@ -99,13 +99,13 @@ typedef bool (*audioProcessingCallback) (void *clientdata, float **buffers, unsi
 /**
  @brief Creates the audio output instance.
   
- @param delegate The object fully implementing the SuperpoweredIOSAudioIODelegate protocol. Not retained.
- @param preferredBufferSize The initial value for preferredBufferSizeMs. 12 is good for every iOS device (512 samples).
- @param preferredMinimumSamplerate The preferred minimum sample rate. 44100 or 48000 are recommended for good sound quality.
- @param audioSessionCategory The audio session category. Audio input is enabled for the appropriate categories only!
- @param channels The number of channels in the audio processing callback.
- @param callback The audio processing callback.
- @param clientdata Custom data passed to the audio processing callback.
+ param delegate The object fully implementing the SuperpoweredIOSAudioIODelegate protocol. Not retained.
+ param preferredBufferSize The initial value for preferredBufferSizeMs. 12 is good for every iOS device (512 samples).
+ param preferredMinimumSamplerate The preferred minimum sample rate. 44100 or 48000 are recommended for good sound quality.
+ param audioSessionCategory The audio session category. Audio input is enabled for the appropriate categories only!
+ param channels The number of channels in the audio processing callback.
+ param callback The audio processing callback.
+ param clientdata Custom data passed to the audio processing callback.
  */
 - (id)initWithDelegate:(id<SuperpoweredIOSAudioIODelegate>)delegate preferredBufferSize:(unsigned int)preferredBufferSize preferredMinimumSamplerate:(unsigned int)preferredMinimumSamplerate audioSessionCategory:(NSString *)audioSessionCategory channels:(int)channels audioProcessingCallback:(audioProcessingCallback)callback clientdata:(void *)clientdata;
 
@@ -157,10 +157,10 @@ typedef bool (*audioProcessingCallback) (void *clientdata, float **buffers, unsi
 /**
  @brief This method is called on the main thread, when a multi-channel audio device is connected or disconnected.
  
- @param outputMap Map the output channels here.
- @param inputMap Map the input channels here.
- @param externalAudioDeviceName The name of the attached audio device, such as the model of the sound card.
- @param outputsAndInputs A human readable description about the available outputs and inputs.
+ param outputMap Map the output channels here.
+ param inputMap Map the input channels here.
+ param externalAudioDeviceName The name of the attached audio device, such as the model of the sound card.
+ param outputsAndInputs A human readable description about the available outputs and inputs.
  */
 - (void)mapChannels:(multiOutputChannelMap *)outputMap inputMap:(multiInputChannelMap *)inputMap externalAudioDeviceName:(NSString *)externalAudioDeviceName outputsAndInputs:(NSString *)outputsAndInputs;
 
