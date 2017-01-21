@@ -49,9 +49,9 @@
     if (!tracking && (slider.value != player->positionPercent)) slider.value = player->positionPercent;
 }
 
-- (bool)toggleFx {
+- (bool)toggleFx:(float)cadence {
     bool enabled = (player->tempo != 1.0f);
-    player->setTempo(enabled ? 1.0f : 1.5f, true);
+    player->setTempo(enabled ? 1.0f : cadence, true);
     return !enabled;
 }
 
@@ -125,7 +125,7 @@ static bool audioProcessing(void *clientdata, float **buffers, unsigned int inpu
     player = new SuperpoweredAdvancedAudioPlayer(NULL, NULL, 44100, 0);
     player->open([[[NSBundle mainBundle] pathForResource:@"oroshi" ofType:@"mp3"] fileSystemRepresentation]);
     player->play(false);
-    player->setBpm(124.0f);
+    player->setBpm(140.0f);
     /*
     SuperpoweredFilter *filter = new SuperpoweredFilter(SuperpoweredFilter_Resonant_Lowpass, 44100);
     filter->setResonantParameters(1000.0f, 0.1f);
