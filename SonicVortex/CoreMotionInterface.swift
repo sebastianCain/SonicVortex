@@ -12,15 +12,20 @@ class CoreMotionInterface: NSObject {
     static let activityManager = CMMotionActivityManager()
     static let pedoMeter = CMPedometer()
     
+    //let caddelegate: CadenceDelegate!
+    
     static func beginTracking() {
         print(CMPedometer.isCadenceAvailable())
         let date = Date()
         pedoMeter.startUpdates(from: date, withHandler: { cmpd, error in
             if (error == nil) {
-                let cad = cmpd!.currentCadence
-                print("Cadence \(cad)")
+                if let data = cmpd {
+                    if let cadence = data.currentCadence {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "cad"), object: cadence)
+                    }
+                }
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }
         })
         isTracking = true

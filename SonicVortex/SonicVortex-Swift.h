@@ -24,6 +24,7 @@
 
 - (void)toggle; // Start/stop Superpowered.
 - (bool)toggleFx; // Enable/disable fx.
+-(void)updateCadence:(double)cadence;
 
 @end
 

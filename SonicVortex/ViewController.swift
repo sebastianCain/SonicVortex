@@ -9,10 +9,13 @@
 //import SuperpoweredIOSAudioIO
 
 import UIKit
+
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var play: UIButton!
     @IBOutlet weak var tempo: UIButton!
+    @IBOutlet weak var cadenceLabel: UILabel!
     var superpowered = Superpowered()
     
     override func viewDidLoad() {
@@ -20,6 +23,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         superpowered.toggle()
         CoreMotionInterface.beginTracking()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "cad"), object: nil, queue: OperationQueue.main, using: { notif in
+            print("lmao delegates")
+            let cadence = (notif.object as! NSNumber).floatValue
+            self.cadenceLabel.text = "Cadence: \(cadence)"
+            self.superpowered.updateCadence(Double(cadence))
+        })
     }
 
     override func didReceiveMemoryWarning() {

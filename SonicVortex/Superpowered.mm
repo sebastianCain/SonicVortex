@@ -68,6 +68,10 @@
     started = !started;
 }
 
+-(void)updateCadence:(double)cadence {
+    player->setTempo(cadence/(player->bpm/60), true);
+}
+
 - (void)mapChannels:(multiOutputChannelMap *)outputMap inputMap:(multiInputChannelMap *)inputMap externalAudioDeviceName:(NSString *)externalAudioDeviceName outputsAndInputs:(NSString *)outputsAndInputs {}
 
 // This is where the Superpowered magic happens.

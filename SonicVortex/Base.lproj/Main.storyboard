@@ -47,16 +47,25 @@
                                     <action selector="tempoTriggered:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dzq-Vs-fW1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cadence: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-OJ-0QP">
+                                <rect key="frame" x="148.5" y="473" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y2N-S6-HAL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="4yc-4W-7df"/>
                             <constraint firstItem="Mna-cf-xHG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="IvT-1h-2Xn"/>
                             <constraint firstItem="Mna-cf-xHG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8v-qe-GTy"/>
+                            <constraint firstItem="gaC-OJ-0QP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mql-gT-0Wl"/>
                             <constraint firstItem="y2N-S6-HAL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NA2-6z-msg"/>
+                            <constraint firstItem="gaC-OJ-0QP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="m9Y-ME-puL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cadenceLabel" destination="gaC-OJ-0QP" id="BKy-x7-Nq5"/>
                         <outlet property="play" destination="Mna-cf-xHG" id="FEe-Cv-3f3"/>
                         <outlet property="tempo" destination="y2N-S6-HAL" id="5g0-T8-2nZ"/>
                     </connections>
