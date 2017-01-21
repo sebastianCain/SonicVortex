@@ -34,7 +34,7 @@ class GradientView: UIView {
         //5 - create the gradient
         let gradient = CGGradient(colorsSpace: colorSpace,
                                   colors: colors,
-                                  locations: nil)
+                                  locations: colorLocations)
         
         //6 - draw the gradient
         let startPoint = CGPoint(x:0, y: 0)

@@ -36,5 +36,5 @@ class CoreMotionInterface: NSObject {
         isTracking = false
     }
     
-    static var isTracking = true
+    static var isTracking = false
 }

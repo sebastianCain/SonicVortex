@@ -21,43 +21,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJB-mc-11v" customClass="GradientView" customModule="SonicVortex" customModuleProvider="target">
-                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mna-cf-xHG">
-                                <rect key="frame" x="162" y="259" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.84849717881944442" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mna-cf-xHG">
+                                <rect key="frame" x="152" y="249" width="70" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="C3b-T3-r9Y"/>
-                                    <constraint firstAttribute="width" constant="50" id="QR0-tL-tHg"/>
+                                    <constraint firstAttribute="height" constant="70" id="C3b-T3-r9Y"/>
+                                    <constraint firstAttribute="width" constant="70" id="QR0-tL-tHg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="playTriggered:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g6B-GY-5Cm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cadence: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-OJ-0QP">
-                                <rect key="frame" x="148.5" y="473" width="78" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BPM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-OJ-0QP">
+                                <rect key="frame" x="169.5" y="473" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-kn-JQB">
+                                <rect key="frame" x="112" y="408.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Vul-vL-omk"/>
+                                    <constraint firstAttribute="width" constant="150" id="lkY-p6-5nr"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wJB-mc-11v" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="6Bq-zA-YQc"/>
                             <constraint firstItem="Mna-cf-xHG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="IvT-1h-2Xn"/>
+                            <constraint firstItem="CdS-kn-JQB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J7f-Z7-0Li"/>
                             <constraint firstItem="Mna-cf-xHG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8v-qe-GTy"/>
+                            <constraint firstItem="CdS-kn-JQB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="L0y-o6-2oC"/>
                             <constraint firstItem="gaC-OJ-0QP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mql-gT-0Wl"/>
-                            <constraint firstItem="wJB-mc-11v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rbg-AX-d4m"/>
-                            <constraint firstItem="wJB-mc-11v" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Wdk-Ei-c9r"/>
-                            <constraint firstItem="wJB-mc-11v" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hBW-Ru-kdz"/>
                             <constraint firstItem="gaC-OJ-0QP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="m9Y-ME-puL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bpmCircle" destination="CdS-kn-JQB" id="BaI-9T-hRa"/>
                         <outlet property="cadenceLabel" destination="gaC-OJ-0QP" id="BKy-x7-Nq5"/>
                         <outlet property="play" destination="Mna-cf-xHG" id="FEe-Cv-3f3"/>
                     </connections>
