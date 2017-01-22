@@ -35,6 +35,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var circlez = [CALayer]()
     var superpowered = Superpowered()
 
+    var minLat: CLLocationDegrees = 0
+    var maxLat: CLLocationDegrees = 0
+    var minLon: CLLocationDegrees = 0
+    var maxLon: CLLocationDegrees = 0
+    
     let manager = CLLocationManager()
     var previousLocation : CLLocation!
     var annotations = [CLLocationCoordinate2D]()
@@ -76,9 +81,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 addAnnotationsOnMap(locationToPoint: location)
                 elapsedDist += previousLocation.distance(from: location)
                 previousLocation = location
+                if location.coordinate.latitude < minLat {
+                    minLat = location.coordinate.latitude
+                }
+                if location.coordinate.latitude > minLat {
+                    maxLat = location.coordinate.latitude
+                }
+                if location.coordinate.latitude < minLat {
+                    minLon = location.coordinate.longitude
+                }
+                if location.coordinate.latitude < minLat {
+                    maxLon = location.coordinate.longitude
+                }
             }
         }
         else {
+            minLat = location.coordinate.latitude
+            maxLat = location.coordinate.latitude
+            minLon = location.coordinate.longitude
+            maxLon = location.coordinate.longitude
             addAnnotationsOnMap(locationToPoint: location)
             previousLocation = location
         }
@@ -133,15 +154,63 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         startTime = NSDate().timeIntervalSince1970
     }
     
+    /*static func takeSnapshot(mapView: MKMapView, withCallback: (UIImage?, NSError?) -> ()) {
+        let options = MKMapSnapshotOptions()
+        options.region = mapView.region
+        options.size = mapView.frame.size
+        options.scale = UIScreen.mainScreen().scale
+        
+        let snapshotter = MKMapSnapshotter(options: options)
+        snapshotter.startWithCompletionHandler() { snapshot, error in
+            guard snapshot != nil else {
+                withCallback(nil, error)
+                return
+            }
+            
+            withCallback(snapshot!.image, nil)
+        }
+    }
+    
+    static func takeSnapshot(mapView: MKMapView, filename: String) {
+        
+        MapHelper.takeSnapshot(mapView) { (image, error) -> () in
+            guard image != nil else {
+                print(error)
+                return
+            }
+            
+            if let data = UIImagePNGRepresentation(image!) {
+                let filename = getDocumentsDirectory().stringByAppendingPathComponent("\(filename).png")
+                data.writeToFile(filename, atomically: true)
+            }
+        }
+    }
+    
+    static func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory as NSString
+    }*/
+    
     func completeRun() {
         endTime = NSDate().timeIntervalSince1970
-        manager.stopUpdatingLocation()
         
         elapsedTime = endTime - startTime
         
+        /*let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake((maxLat-minLat)/2,(maxLon-minLon)/2)
+        let span = MKCoordinateSpanMake(maxLat-minLat, maxLon-minLon)
+        let region = MKCoordinateRegionMake(center, span)
+        
+        mapView.setRegion(region, animated: false)
+        
+        self.takeSnapshot(mapView)*/
+        
+        manager.stopUpdatingLocation()
+        
         let avc = self.storyboard?.instantiateViewController(withIdentifier: "avc") as! AnalysisViewController
-        avc.time = elapsedTime
-        avc.dist = elapsedDist
+        //avc.img = img
+        avc.time = "\(Int(elapsedTime/60))m \(Int(elapsedTime.truncatingRemainder(dividingBy: 60)))s"
+        avc.dist = "\(Float(Int(elapsedDist/10))/100)km"
         self.show(avc, sender: self)
     }
     
