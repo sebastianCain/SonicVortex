@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         displayLink.preferredFramesPerSecond = 60
         displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
         
-        for i in 0...16 {
+        for i in 0..<32 {
             let circle = CALayer()
             circle.frame = CGRect(x: 0, y: 0, width: 7, height: 7)
             
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     
     func onDisplayLink() {
         // Get the frequency values.
-        let frequencies = UnsafeMutablePointer<Float>.allocate(capacity: 8)
+        let frequencies = UnsafeMutablePointer<Float>.allocate(capacity: 16)
         superpowered.getFrequencies(frequencies)
         
         // Wrapping the UI changes in a CATransaction block like this prevents animation/smoothing.
@@ -103,14 +103,19 @@ class ViewController: UIViewController {
         CATransaction.setDisableActions(true)
         
         // Set the dimension of every frequency bar.
-        for n in 0...7 {
-            let h = frequencies[n] * 300
+        for n in 0..<32 {
+            var h: CGFloat = 0.0
+            if n < 16 {
+                h = CGFloat(frequencies[n]) * CGFloat(200.0)
+            } else {
+                h = CGFloat(frequencies[31-n]) * CGFloat(200.0)
+            }
             circlez[n].bounds = CGRect(x: 0, y: 0, width: 7, height: max(CGFloat(h), 7.0))
             print(frequencies[n])
         }
         
         CATransaction.commit()
-        frequencies.deallocate(capacity: 8)
+        frequencies.deallocate(capacity: 16)
     }
     
     override func didReceiveMemoryWarning() {

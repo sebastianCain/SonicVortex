@@ -22,7 +22,7 @@
     unsigned int lastPositionSeconds, lastSamplerate, samplesProcessed;
     pthread_mutex_t mutex;
     SuperpoweredBandpassFilterbank *filters;
-    float bands[128][8];
+    float bands[128][16];
     unsigned int samplerate, bandsWritePos, bandsReadPos, bandsPos, lastNumberOfSamples;
 
 }
@@ -97,7 +97,7 @@ static bool audioProcessing(void *clientdata, float **buffers, unsigned int inpu
     
     // Get the next position to write.
     unsigned int writePos = self->bandsWritePos++ & 127;
-    memset(&self->bands[writePos][0], 0, 8 * sizeof(float));
+    memset(&self->bands[writePos][0], 0, 16 * sizeof(float));
     
     // Detect frequency magnitudes.
     float peak, sum;
@@ -189,24 +189,24 @@ static bool audioProcessing(void *clientdata, float **buffers, unsigned int inpu
     
     samplerate = 44100;
     bandsWritePos = bandsReadPos = bandsPos = lastNumberOfSamples = 0;
-    memset(bands, 0, 128 * 8 * sizeof(float));
+    memset(bands, 0, 128 * 16 * sizeof(float));
     
-    float frequencies[8] = { 55, 110, 220, 440, 880, 1760, 3520, 7040 };
-    float widths[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
-    filters = new SuperpoweredBandpassFilterbank(8, frequencies, widths, samplerate);
+    float frequencies[16] = { 35, 50, 70, 100, 155, 220, 270, 311, 370, 440, 550, 622, 880, 1244, 1760, 2489};
+    float widths[16] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    filters = new SuperpoweredBandpassFilterbank(16, frequencies, widths, samplerate);
     return self;
 }
 
 - (void)getFrequencies:(float *)freqs {
     pthread_mutex_lock(&mutex);
-    memset(freqs, 0, 8 * sizeof(float));
+    memset(freqs, 0, 16 * sizeof(float));
     unsigned int currentPosition = __sync_fetch_and_add(&bandsPos, 0);
     if (currentPosition > bandsReadPos) {
         unsigned int positionsElapsed = currentPosition - bandsReadPos;
         float multiplier = 1.0f / float(positionsElapsed * lastNumberOfSamples);
         while (positionsElapsed--) {
             float *b = &bands[bandsReadPos++ & 127][0];
-            for (int n = 0; n < 8; n++) freqs[n] += b[n] * multiplier;
+            for (int n = 0; n < 16; n++) freqs[n] += b[n] * multiplier;
         }
     }
     pthread_mutex_unlock(&mutex);
