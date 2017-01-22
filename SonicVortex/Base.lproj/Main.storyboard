@@ -91,10 +91,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYg-2w-PIJ">
-                                        <rect key="frame" x="20" y="22" width="70" height="40"/>
+                                        <rect key="frame" x="20" y="22" width="100" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="nF2-V9-I4s"/>
-                                            <constraint firstAttribute="height" constant="40" id="zOZ-WC-4Tx"/>
+                                            <constraint firstAttribute="width" constant="100" id="nF2-V9-I4s"/>
+                                            <constraint firstAttribute="height" constant="50" id="zOZ-WC-4Tx"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <state key="normal" title="end run">
@@ -163,27 +163,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsu-Ux-CRl">
-                                <rect key="frame" x="46" y="58" width="283" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsu-Ux-CRl">
+                                <rect key="frame" x="201.5" y="149.5" width="107.5" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="107.5" id="FbL-n2-icV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-A9-35o">
-                                <rect key="frame" x="46" y="87" width="283" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-A9-35o">
+                                <rect key="frame" x="201" y="177.5" width="108" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="YNH-4E-gfh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skd-zu-O45">
+                                <rect key="frame" x="46" y="149.5" width="104.5" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHi-By-Spf">
+                                <rect key="frame" x="46" y="177.5" width="132" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzP-jO-ENZ">
+                                <rect key="frame" x="152.5" y="111.5" width="71" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="run ended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhF-bm-dGh">
+                                <rect key="frame" x="113" y="28" width="148" height="41.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Qsu-Ux-CRl" firstAttribute="baseline" secondItem="skd-zu-O45" secondAttribute="baseline" id="0IC-bv-mNV"/>
+                            <constraint firstItem="XzP-jO-ENZ" firstAttribute="centerX" secondItem="6Ow-RS-Cy2" secondAttribute="centerX" id="9Zt-qe-Vur"/>
+                            <constraint firstItem="Zak-A9-35o" firstAttribute="baseline" secondItem="yHi-By-Spf" secondAttribute="baseline" id="A5n-EK-O7I"/>
                             <constraint firstItem="Zak-A9-35o" firstAttribute="top" secondItem="Qsu-Ux-CRl" secondAttribute="bottom" constant="8" id="BD3-IS-by6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zak-A9-35o" secondAttribute="trailing" constant="30" id="DzP-K8-RlE"/>
-                            <constraint firstItem="Qsu-Ux-CRl" firstAttribute="top" secondItem="nbP-JO-A3d" secondAttribute="bottom" constant="38" id="HwT-0l-1Oy"/>
-                            <constraint firstItem="Zak-A9-35o" firstAttribute="leading" secondItem="6Ow-RS-Cy2" secondAttribute="leadingMargin" constant="30" id="iYC-P0-CUj"/>
-                            <constraint firstItem="Qsu-Ux-CRl" firstAttribute="leading" secondItem="6Ow-RS-Cy2" secondAttribute="leadingMargin" constant="30" id="sIl-2o-4Wx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qsu-Ux-CRl" secondAttribute="trailing" constant="30" id="zyn-Cz-Opf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zak-A9-35o" secondAttribute="trailing" constant="50" id="DzP-K8-RlE"/>
+                            <constraint firstItem="jhF-bm-dGh" firstAttribute="centerX" secondItem="6Ow-RS-Cy2" secondAttribute="centerX" id="F2I-eE-Dkc"/>
+                            <constraint firstItem="yHi-By-Spf" firstAttribute="leading" secondItem="skd-zu-O45" secondAttribute="leading" id="Kh6-Zf-sGi"/>
+                            <constraint firstItem="yHi-By-Spf" firstAttribute="top" secondItem="skd-zu-O45" secondAttribute="bottom" constant="8" id="Tg4-wp-7KO"/>
+                            <constraint firstItem="XzP-jO-ENZ" firstAttribute="top" secondItem="jhF-bm-dGh" secondAttribute="bottom" constant="42" id="amw-Pu-h6p"/>
+                            <constraint firstItem="skd-zu-O45" firstAttribute="leading" secondItem="6Ow-RS-Cy2" secondAttribute="leadingMargin" constant="30" id="bZ7-3b-gEn"/>
+                            <constraint firstItem="jhF-bm-dGh" firstAttribute="top" secondItem="nbP-JO-A3d" secondAttribute="bottom" constant="8" id="npg-uZ-ml1"/>
+                            <constraint firstItem="skd-zu-O45" firstAttribute="top" secondItem="XzP-jO-ENZ" secondAttribute="bottom" constant="18" id="vUA-Kb-dvs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qsu-Ux-CRl" secondAttribute="trailing" constant="50" id="zyn-Cz-Opf"/>
                         </constraints>
                     </view>
                     <connections>

@@ -13,18 +13,18 @@ class AnalysisViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distLabel: UILabel!
     
-    var time: Double?
-    var dist: Double?
+    var time: String?
+    var dist: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         if let t = time {
-            timeLabel.text = "Elapsed Time: \(t)"
+            timeLabel.text = t
         }
         if let d = dist {
-            distLabel.text = "Elapsed Distance \(d)"
+            distLabel.text = d
         }
     }
 

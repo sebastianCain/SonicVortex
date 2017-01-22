@@ -173,13 +173,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         end.layer.cornerRadius = 15
         end.layer.borderColor = UIColor.white.cgColor
-        end.layer.borderWidth = 2
+        end.layer.borderWidth = 1.5
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(endTriggered))
         end.addGestureRecognizer(lpgr)
         
         play.layer.cornerRadius = 35
         play.layer.borderColor = UIColor.white.cgColor
-        play.layer.borderWidth = 2
+        play.layer.borderWidth = 1.5
         play.imageEdgeInsets = UIEdgeInsetsMake(18.5, 19.5, 18.5, 17.5)
         play.setImage(UIImage(named: "Pause-100"), for: UIControlState.selected)
         play.setImage(UIImage(named: "Play-100"), for: UIControlState.normal)
