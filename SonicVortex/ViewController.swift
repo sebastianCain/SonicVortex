@@ -62,6 +62,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
     }
+    var currentTempo = 1.0
+    var tempoData = [String: Float]()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0]
@@ -69,7 +71,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             location = locations.last!
         }
         
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01,0.01)
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         mapView.setRegion(region, animated: true)
@@ -103,10 +105,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             addAnnotationsOnMap(locationToPoint: location)
             previousLocation = location
         }
-        if (NSDate().timeIntervalSince1970-startTime > 5) {
+        if (NSDate().timeIntervalSinceReferenceDate-startTime > 5) {
             let polyline = MKPolyline(coordinates: &annotations, count: annotations.count)
             mapView.add(polyline)
         }
+        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -136,7 +139,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillLayoutSubviews() {
         playY.constant = -150
         vizY.constant = 150
-        startY.constant = -150
+        startY.constant = -50
     }
     
 //Map stuff//
@@ -151,7 +154,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType(rawValue: 0)!
         mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
-        startTime = NSDate().timeIntervalSince1970
+        startTime = NSDate().timeIntervalSinceReferenceDate
     }
     
     /*static func takeSnapshot(mapView: MKMapView, withCallback: (UIImage?, NSError?) -> ()) {
@@ -193,7 +196,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }*/
     
     func completeRun() {
-        endTime = NSDate().timeIntervalSince1970
+        endTime = NSDate().timeIntervalSinceReferenceDate
         
         elapsedTime = endTime - startTime
         
@@ -211,24 +214,48 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //avc.img = img
         avc.time = "\(Int(elapsedTime/60))m \(Int(elapsedTime.truncatingRemainder(dividingBy: 60)))s"
         avc.dist = "\(Float(Int(elapsedDist/10))/100)km"
-        self.show(avc, sender: self)
+        avc.tempoData = tempoData
+        self.present(avc, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        startLayer.alpha = 1.0
+        startLayer.isUserInteractionEnabled = true
+        runLayer.alpha = 0.0
+        runLayer.isUserInteractionEnabled = false
+        superpowered.toggle()
+        superpowered.togglePlayback()
+        
+        begin = false
+        finish = false
+        mapView.removeAnnotations(mapView.annotations)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        superpowered.toggle()
+        superpowered.togglePlayback()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        superpowered.toggle()
-        superpowered.togglePlayback()
+        //superpowered.toggle()
+        //superpowered.togglePlayback()
         
         //CoreMotionInterface.beginTracking()
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "cad"), object: nil, queue: OperationQueue.main, using: { notif in
             let cadence = (notif.object as! NSNumber).floatValue
             let bpm = cadence*60
-            var tempo = bpm/140.0
-            tempo = Float(Int(tempo*10))/10
+            var tempo = bpm/135.0
+            tempo = Float(Int(tempo*100))/100
             self.cadenceLabel.text = "\(tempo)x tempo"
             (self.bpmCircle.layer.sublayers?.first as! CAShapeLayer).strokeEnd = CGFloat(bpm)/300.0
             self.superpowered.updateCadence(Double(cadence))
+            
+            //data shit
+            let interval = NSDate.timeIntervalSinceReferenceDate
+            let secs = Int(interval-self.startTime)
+            self.tempoData[String(secs)] = tempo
         })
         //gradient.setNeedsDisplay()
         
@@ -237,9 +264,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         start.layer.borderWidth = 7
         start.alpha = 0.5
         
-        end.layer.cornerRadius = 15
-        end.layer.borderColor = UIColor.white.cgColor
-        end.layer.borderWidth = 1.5
+        end.layer.cornerRadius = 10
+        end.layer.backgroundColor = UIColor(white: 1.0, alpha: 0.2).cgColor
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(endTriggered))
         end.addGestureRecognizer(lpgr)
         

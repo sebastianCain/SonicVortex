@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 kevinzhow. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "PNLineChart.h"
-#import "PNColor.h"
 #import "PNChartLabel.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
@@ -329,8 +329,8 @@
         if (chartData.color) {
             chartLine.strokeColor = [[chartData.color colorWithAlphaComponent:chartData.alpha]CGColor];
         } else {
-            chartLine.strokeColor = [PNGreen CGColor];
-            pointLayer.strokeColor = [PNGreen CGColor];
+            chartLine.strokeColor = [UIColor whiteColor].CGColor;
+            pointLayer.strokeColor = [UIColor whiteColor].CGColor;
         }
         
         UIBezierPath *progressline = [_chartPath objectAtIndex:lineIndex];

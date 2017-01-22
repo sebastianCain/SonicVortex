@@ -12,15 +12,34 @@ class AnalysisViewController: UIViewController, PNChartDelegate {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distLabel: UILabel!
-    @IBOutlet weak var imgView: UIImageView!
+    //@IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var home: UIButton!
+    @IBOutlet weak var chart: PNLineChart!
     
     var time: String?
     var dist: String?
-    var img: UIImage?
+    var tempoData = [String: Float]()
+    //var img: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        chart.delegate = self
+        let labels: [String] = Array(tempoData.keys)
+        chart.setXLabels(labels, withWidth: 240.0/CGFloat(labels.count))
+        let data01 = PNLineChartData()
+        data01.color = UIColor.white;
+        data01.itemCount = UInt(chart.xLabels.count);
+        data01.getData = { index in
+            return PNLineChartDataItem(y: CGFloat(self.tempoData[labels[Int(index)]]!))
+        }
+        chart.backgroundColor = UIColor.clear
+        chart.chartData = [data01]
+        chart.stroke()
+        
+        
+        home.layer.cornerRadius = 10
+        home.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         // Do any additional setup after loading the view.
         if let t = time {
             timeLabel.text = t
@@ -28,25 +47,14 @@ class AnalysisViewController: UIViewController, PNChartDelegate {
         if let d = dist {
             distLabel.text = d
         }
-        if let i = img {
-            imgView.image = i
-        }
+//        if let i = img {
+//            imgView.image = i
+//        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func homeTriggered(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
