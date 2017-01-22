@@ -37,7 +37,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     let manager = CLLocationManager()
     var previousLocation : CLLocation!
-    var originalSettingsSet = false
     var annotations = [CLLocationCoordinate2D]()
     var startTime: Float64 = 0.0
     var endTime: Float64 = 0.0
@@ -65,24 +64,27 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             location = locations.last!
         }
         
-        if !originalSettingsSet {
-            let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01,0.01)
-            let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
-            let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-            mapView.setRegion(region, animated: true)
-            originalSettingsSet = true
-        }
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01,0.01)
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        mapView.setRegion(region, animated: true)
         
         mapView.showsUserLocation = true
         
         if (previousLocation as CLLocation?) != nil {
-            if previousLocation.distance(from: location) > 50 {
+            if previousLocation.distance(from: location) > 10 {
                 addAnnotationsOnMap(locationToPoint: location)
-                previousLocation = location
                 elapsedDist += previousLocation.distance(from: location)
-                let polyline = MKPolyline(coordinates: &annotations, count: annotations.count)
-                mapView.add(polyline)
+                previousLocation = location
             }
+        }
+        else {
+            addAnnotationsOnMap(locationToPoint: location)
+            previousLocation = location
+        }
+        if (NSDate().timeIntervalSince1970-startTime > 5) {
+            let polyline = MKPolyline(coordinates: &annotations, count: annotations.count)
+            mapView.add(polyline)
         }
     }
     
@@ -127,8 +129,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType(rawValue: 0)!
-        mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
-        
+        mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         startTime = NSDate().timeIntervalSince1970
     }
     
@@ -137,12 +138,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         manager.stopUpdatingLocation()
         
         elapsedTime = endTime - startTime
-        print("=========")
-        print("endTime: \(endTime)")
-        print("startTime: \(startTime)")
-        print("elapsedTime: \(elapsedTime)")
-        print("elapsedDist: \(elapsedDist)")
-        print("=========")
         
         let avc = self.storyboard?.instantiateViewController(withIdentifier: "avc") as! AnalysisViewController
         avc.time = elapsedTime
