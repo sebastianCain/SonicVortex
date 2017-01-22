@@ -39,11 +39,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var previousLocation : CLLocation!
     var originalSettingsSet = false
     var annotations = [CLLocationCoordinate2D]()
-    let currentDateTime = Date()
     var startTime: Float64 = 0.0
     var endTime: Float64 = 0.0
     var elapsedTime: Float64 = 0.0
     var elapsedDist: Float64 = 0.0
+    var countToThree = 0
     var begin = false {
         didSet {
             if begin {
@@ -61,9 +61,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0]
-        print("1")
         if locations.count > 1 {
-            print("2")
             location = locations.last!
         }
         
@@ -82,14 +80,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 addAnnotationsOnMap(locationToPoint: location)
                 previousLocation = location
                 elapsedDist += previousLocation.distance(from: location)
+                let polyline = MKPolyline(coordinates: &annotations, count: annotations.count)
+                mapView.add(polyline)
             }
-        } else {
-            addAnnotationsOnMap(locationToPoint: location)
-            previousLocation = location
         }
-
-        let polyline = MKPolyline(coordinates: &annotations, count: annotations.count)
-        mapView.add(polyline)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -135,16 +129,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.mapType = MKMapType(rawValue: 0)!
         mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
         
-        startTime = currentDateTime.timeIntervalSince1970
+        startTime = NSDate().timeIntervalSince1970
     }
     
     func completeRun() {
-        endTime = currentDateTime.timeIntervalSince1970
+        endTime = NSDate().timeIntervalSince1970
         manager.stopUpdatingLocation()
         
         elapsedTime = endTime - startTime
-        print(elapsedTime)
-        print(elapsedDist)
+        print("=========")
+        print("endTime: \(endTime)")
+        print("startTime: \(startTime)")
+        print("elapsedTime: \(elapsedTime)")
+        print("elapsedDist: \(elapsedDist)")
+        print("=========")
     }
     
     override func viewDidLoad() {
@@ -238,7 +236,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 h = CGFloat(frequencies[31-n]) * CGFloat(200.0)
             }
             circlez[n].bounds = CGRect(x: 0, y: 0, width: 7, height: max(CGFloat(h), 7.0))
-            print(frequencies[n])
         }
         
         CATransaction.commit()
@@ -284,7 +281,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     //MARK: - Long Press Gest Recog
     func endTriggered() {
-        finish = true
+        if !finish {
+            finish = true
+        }
     }
 
 }
