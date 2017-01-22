@@ -146,7 +146,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func mapSetup() {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestAlwaysAuthorization()
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
