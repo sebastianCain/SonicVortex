@@ -16,6 +16,10 @@
 		0A4084F41E33C20C00B2412D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4084F31E33C20C00B2412D /* GradientView.swift */; };
 		0A4084FE1E343BCB00B2412D /* CircleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4084FD1E343BCB00B2412D /* CircleManager.swift */; };
 		0A4085001E348A6C00B2412D /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4084FF1E348A6C00B2412D /* AnalysisViewController.swift */; };
+		0A4085091E34A36200B2412D /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4085041E34A36200B2412D /* PNLineChart.m */; };
+		0A40850A1E34A36200B2412D /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4085061E34A36200B2412D /* PNLineChartData.m */; };
+		0A40850B1E34A36200B2412D /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4085081E34A36200B2412D /* PNLineChartDataItem.m */; };
+		0A40850F1E34A4F800B2412D /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A40850E1E34A4F800B2412D /* PNGenericChart.m */; };
 		0A425E751E32FDBD00836261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A425E741E32FDBD00836261 /* AppDelegate.swift */; };
 		0A425E771E32FDBD00836261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A425E761E32FDBD00836261 /* ViewController.swift */; };
 		0A425E7A1E32FDBD00836261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A425E781E32FDBD00836261 /* Main.storyboard */; };
@@ -48,6 +52,16 @@
 		0A4084FC1E3412BA00B2412D /* SuperpoweredBandpassFilterbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredBandpassFilterbank.h; sourceTree = "<group>"; };
 		0A4084FD1E343BCB00B2412D /* CircleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleManager.swift; sourceTree = "<group>"; };
 		0A4084FF1E348A6C00B2412D /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
+		0A4085011E34A36200B2412D /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
+		0A4085021E34A36200B2412D /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
+		0A4085031E34A36200B2412D /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		0A4085041E34A36200B2412D /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		0A4085051E34A36200B2412D /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
+		0A4085061E34A36200B2412D /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
+		0A4085071E34A36200B2412D /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
+		0A4085081E34A36200B2412D /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
+		0A40850D1E34A4F800B2412D /* PNGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGenericChart.h; sourceTree = "<group>"; };
+		0A40850E1E34A4F800B2412D /* PNGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNGenericChart.m; sourceTree = "<group>"; };
 		0A425E711E32FDBC00836261 /* SonicVortex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonicVortex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A425E741E32FDBD00836261 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A425E761E32FDBD00836261 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +110,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A40850C1E34A36900B2412D /* PNChart */ = {
+			isa = PBXGroup;
+			children = (
+				0A4085011E34A36200B2412D /* PNChart.h */,
+				0A4085021E34A36200B2412D /* PNChartDelegate.h */,
+				0A40850D1E34A4F800B2412D /* PNGenericChart.h */,
+				0A40850E1E34A4F800B2412D /* PNGenericChart.m */,
+				0A4085031E34A36200B2412D /* PNLineChart.h */,
+				0A4085041E34A36200B2412D /* PNLineChart.m */,
+				0A4085051E34A36200B2412D /* PNLineChartData.h */,
+				0A4085061E34A36200B2412D /* PNLineChartData.m */,
+				0A4085071E34A36200B2412D /* PNLineChartDataItem.h */,
+				0A4085081E34A36200B2412D /* PNLineChartDataItem.m */,
+			);
+			name = PNChart;
+			sourceTree = "<group>";
+		};
 		0A425E681E32FDBC00836261 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +164,7 @@
 				0A425E8A1E3303FE00836261 /* Superpowered */,
 				0A4084F31E33C20C00B2412D /* GradientView.swift */,
 				0A4084FD1E343BCB00B2412D /* CircleManager.swift */,
+				0A40850C1E34A36900B2412D /* PNChart */,
 			);
 			path = SonicVortex;
 			sourceTree = "<group>";
@@ -258,6 +290,10 @@
 				0A425ECF1E3331C700836261 /* Superpowered.mm in Sources */,
 				0A425EC01E3303FE00836261 /* SuperpoweredIOSAudioIO.mm in Sources */,
 				0A4084FE1E343BCB00B2412D /* CircleManager.swift in Sources */,
+				0A40850F1E34A4F800B2412D /* PNGenericChart.m in Sources */,
+				0A40850B1E34A36200B2412D /* PNLineChartDataItem.m in Sources */,
+				0A40850A1E34A36200B2412D /* PNLineChartData.m in Sources */,
+				0A4085091E34A36200B2412D /* PNLineChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

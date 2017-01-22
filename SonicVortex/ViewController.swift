@@ -155,7 +155,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "cad"), object: nil, queue: OperationQueue.main, using: { notif in
             let cadence = (notif.object as! NSNumber).floatValue
             let bpm = cadence*60
-            self.cadenceLabel.text = "BPM\n\(Int(bpm))"
+            var tempo = bpm/140.0
+            tempo = Float(Int(tempo*10))/10
+            self.cadenceLabel.text = "\(tempo)x tempo"
             (self.bpmCircle.layer.sublayers?.first as! CAShapeLayer).strokeEnd = CGFloat(bpm)/300.0
             self.superpowered.updateCadence(Double(cadence))
         })

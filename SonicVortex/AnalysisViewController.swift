@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnalysisViewController: UIViewController {
+class AnalysisViewController: UIViewController, PNChartDelegate {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distLabel: UILabel!
