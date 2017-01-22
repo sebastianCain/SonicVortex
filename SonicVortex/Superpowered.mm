@@ -20,7 +20,7 @@
     bool started;
     uint64_t timeUnitsProcessed, maxTime;
     unsigned int lastPositionSeconds, lastSamplerate, samplesProcessed;
-    
+    pthread_mutex_t mutex;
     SuperpoweredBandpassFilterbank *filters;
     float bands[128][8];
     unsigned int samplerate, bandsWritePos, bandsReadPos, bandsPos, lastNumberOfSamples;
@@ -198,6 +198,7 @@ static bool audioProcessing(void *clientdata, float **buffers, unsigned int inpu
 }
 
 - (void)getFrequencies:(float *)freqs {
+    pthread_mutex_lock(&mutex);
     memset(freqs, 0, 8 * sizeof(float));
     unsigned int currentPosition = __sync_fetch_and_add(&bandsPos, 0);
     if (currentPosition > bandsReadPos) {
@@ -208,6 +209,7 @@ static bool audioProcessing(void *clientdata, float **buffers, unsigned int inpu
             for (int n = 0; n < 8; n++) freqs[n] += b[n] * multiplier;
         }
     }
+    pthread_mutex_unlock(&mutex);
 }
 
 @end

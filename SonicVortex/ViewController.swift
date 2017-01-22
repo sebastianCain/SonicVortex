@@ -13,10 +13,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var vizLayer: UIView!
     @IBOutlet weak var play: UIButton!
     @IBOutlet weak var cadenceLabel: UILabel!
     @IBOutlet weak var bpmCircle: UIView!
     var displayLink: CADisplayLink!
+    var circlez = [CALayer]()
     
     var superpowered = Superpowered()
     
@@ -35,7 +37,7 @@ class ViewController: UIViewController {
         })
         //gradient.setNeedsDisplay()
         
-        play.layer.cornerRadius = 35
+        play.layer.cornerRadius = 310
         play.layer.borderColor = UIColor.white.cgColor
         play.layer.borderWidth = 1
         play.imageEdgeInsets = UIEdgeInsetsMake(18.5, 19.5, 18.5, 17.5)
@@ -52,12 +54,41 @@ class ViewController: UIViewController {
         circLayer.lineWidth = 5
         circLayer.transform = CATransform3DRotate(CATransform3DTranslate(CATransform3DIdentity, 0, 150, 0), -CGFloat(M_PI)/CGFloat(2.0), 0, 0, 1)
         
+        let circLayer2 = CAShapeLayer()
+        circLayer2.path = CGPath.init(ellipseIn: bpmCircle.bounds, transform: nil)
+        circLayer2.strokeColor = UIColor(white: 1.0, alpha: 0.4).cgColor
+        circLayer2.fillColor = UIColor.clear.cgColor
+        circLayer2.lineWidth = 5
         
+        bpmCircle.layer.addSublayer(circLayer2)
         bpmCircle.layer.addSublayer(circLayer)
         
         displayLink = CADisplayLink(target: self, selector: #selector(ViewController.onDisplayLink))
-        displayLink.preferredFramesPerSecond = 1
+        displayLink.preferredFramesPerSecond = 60
         displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        
+        for i in 0...16 {
+            let circle = CALayer()
+            circle.frame = CGRect(x: 0, y: 0, width: 7, height: 7)
+            
+            circle.cornerRadius = 4
+            circle.backgroundColor = UIColor.white.cgColor
+            
+            circle.position = CircleManager.position(index: i)
+            
+//            var transform = CATransform3DIdentity;
+//            transform = CATransform3DTranslate(transform, circle.position.x+4-vizLayer.center.x, circle.position.y+4-vizLayer.center.y, 0.0);
+//            transform = CATransform3DRotate(transform, CGFloat(CircleManager.rotation(index: i)), 0.0, 0.0, -1.0);
+//            transform = CATransform3DTranslate(transform, vizLayer.center.x-circle.position.x+4, vizLayer.center.y-circle.position.y+4, 0.0);
+            
+            //circle.transform = transform
+            
+            circle.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(CircleManager.rotation(index: i)), 0, 0, 1)
+            
+            vizLayer.layer.addSublayer(circle)
+            
+            circlez.append(circle)
+        }
         
     }
     
@@ -72,13 +103,10 @@ class ViewController: UIViewController {
         CATransaction.setDisableActions(true)
         
         // Set the dimension of every frequency bar.
-        let originY:CGFloat = self.view.frame.size.height - 20
-        let width:CGFloat = (self.view.frame.size.width - 47) / 8
-        var frame:CGRect = CGRect(x: 20, y: 0, width: width, height: 0)
         for n in 0...7 {
-            frame.size.height = CGFloat(frequencies[n]) * 4000
-            frame.origin.y = originY - frame.size.height
-            frame.origin.x += width + 1
+            let h = frequencies[n] * 300
+            circlez[n].bounds = CGRect(x: 0, y: 0, width: 7, height: max(CGFloat(h), 7.0))
+            print(frequencies[n])
         }
         
         CATransaction.commit()
