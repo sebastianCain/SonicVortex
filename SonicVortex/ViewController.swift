@@ -14,11 +14,12 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    
+    //MARK: Properties
     @IBOutlet weak var startLayer: UIView!
     @IBOutlet weak var runLayer: UIView!
     
     @IBOutlet weak var start: UIButton!
+    
     @IBOutlet weak var vizLayer: UIView!
     @IBOutlet weak var play: UIButton!
     @IBOutlet weak var cadenceLabel: UILabel!
@@ -31,15 +32,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var displayLink: CADisplayLink!
     var circlez = [CALayer]()
-    
     var superpowered = Superpowered()
-    
+
     let manager = CLLocationManager()
     var previousLocation : CLLocation!
-    
     var originalSettingsSet = false
-    
     var annotations = [CLLocationCoordinate2D]()
+    let currentDateTime = Date()
+    var startTime: Float64 = 0.0
+    var endTime: Float64 = 0.0
+    var elapsedTime: Float64 = 0.0
+    var elapsedDist: Float64 = 0.0
+    var begin = false {
+        didSet {
+            if begin {
+                mapSetup()
+            }
+        }
+    }
+    var end = false {
+        didSet {
+            if end {
+                completeRun()
+            }
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0]
@@ -63,6 +80,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if previousLocation.distance(from: location) > 50 {
                 addAnnotationsOnMap(locationToPoint: location)
                 previousLocation = location
+                elapsedDist += previousLocation.distance(from: location)
             }
         } else {
             addAnnotationsOnMap(locationToPoint: location)
@@ -103,14 +121,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         startY.constant = -150
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        superpowered.toggle()
-        superpowered.togglePlayback()
-        
-        //Map stuff//
+//Map stuff//
+    func mapSetup() {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
@@ -121,6 +133,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.showsUserLocation = true
         mapView.mapType = MKMapType(rawValue: 0)!
         mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+        
+        startTime = currentDateTime.timeIntervalSince1970
+    }
+    
+    func completeRun() {
+        endTime = currentDateTime.timeIntervalSince1970
+        manager.stopUpdatingLocation()
+        
+        elapsedTime = endTime - startTime
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        superpowered.toggle()
+        superpowered.togglePlayback()
         
         //CoreMotionInterface.beginTracking()
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "cad"), object: nil, queue: OperationQueue.main, using: { notif in
@@ -233,6 +261,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             CoreMotionInterface.beginTracking()
             play.isSelected = true
         }
+    }
+    
+    @IBAction func startTriggered(_ sender: UIButton) {
+        begin = true
+    }
+    
+    @IBAction func endTriggered(_ sender: UIButton) {
+        end = true
     }
     
     @IBAction func tempoTriggered(_ sender: UIButton) {
