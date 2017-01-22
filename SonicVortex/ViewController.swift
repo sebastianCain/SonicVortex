@@ -19,6 +19,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var runLayer: UIView!
     
     @IBOutlet weak var start: UIButton!
+    @IBOutlet weak var end: UIButton!
     
     @IBOutlet weak var vizLayer: UIView!
     @IBOutlet weak var play: UIButton!
@@ -50,9 +51,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
     }
-    var end = false {
+    var finish = false {
         didSet {
-            if end {
+            if finish {
                 completeRun()
             }
         }
@@ -117,7 +118,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewWillLayoutSubviews() {
         playY.constant = -150
-        vizY.constant = -150
+        vizY.constant = 150
         startY.constant = -150
     }
     
@@ -161,12 +162,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //gradient.setNeedsDisplay()
         
         start.layer.cornerRadius = 75
-        play.layer.borderColor = UIColor.white.cgColor
-        play.layer.borderWidth = 7
+        start.layer.borderColor = UIColor.white.cgColor
+        start.layer.borderWidth = 7
+        start.alpha = 0.5
         
-        play.layer.cornerRadius = 30
+        end.layer.cornerRadius = 15
+        end.layer.borderColor = UIColor.white.cgColor
+        end.layer.borderWidth = 2
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(endTriggered))
+        end.addGestureRecognizer(lpgr)
+        
+        play.layer.cornerRadius = 35
         play.layer.borderColor = UIColor.white.cgColor
-        play.layer.borderWidth = 1
+        play.layer.borderWidth = 2
         play.imageEdgeInsets = UIEdgeInsetsMake(18.5, 19.5, 18.5, 17.5)
         play.setImage(UIImage(named: "Pause-100"), for: UIControlState.selected)
         play.setImage(UIImage(named: "Play-100"), for: UIControlState.normal)
@@ -197,26 +205,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         for i in 0..<32 {
             let circle = CALayer()
             circle.frame = CGRect(x: 0, y: 0, width: 7, height: 7)
-            
             circle.cornerRadius = 4
             circle.backgroundColor = UIColor.white.cgColor
-            
             circle.position = CircleManager.position(index: i)
-            
-//            var transform = CATransform3DIdentity;
-//            transform = CATransform3DTranslate(transform, circle.position.x+4-vizLayer.center.x, circle.position.y+4-vizLayer.center.y, 0.0);
-//            transform = CATransform3DRotate(transform, CGFloat(CircleManager.rotation(index: i)), 0.0, 0.0, -1.0);
-//            transform = CATransform3DTranslate(transform, vizLayer.center.x-circle.position.x+4, vizLayer.center.y-circle.position.y+4, 0.0);
-            
-            //circle.transform = transform
-            
             circle.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(CircleManager.rotation(index: i)), 0, 0, 1)
-            
+
             vizLayer.layer.addSublayer(circle)
-            
             circlez.append(circle)
         }
-        
         startLayer.alpha = 1.0
         runLayer.alpha = 0.0
     }
@@ -252,6 +248,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: - Triggers
     @IBAction func playTriggered(_ sender: UIButton) {
         superpowered.togglePlayback()
         if (CoreMotionInterface.isTracking) {
@@ -265,14 +262,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func startTriggered(_ sender: UIButton) {
         begin = true
-    }
-    
-    @IBAction func endTriggered(_ sender: UIButton) {
-        end = true
+        startY.constant = 150
+        UIView.animate(withDuration: 1, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+            self.startLayer.layoutIfNeeded()
+        }, completion: { b in
+            UIView.animate(withDuration: 0.3, animations: {
+                self.startLayer.alpha = 0.0
+                self.runLayer.alpha = 1.0
+            }, completion: { b in
+                self.startLayer.isUserInteractionEnabled = false
+                self.runLayer.isUserInteractionEnabled = true
+            })
+        })
     }
     
     @IBAction func tempoTriggered(_ sender: UIButton) {
         superpowered.toggleFx()
     }
+    
+    //MARK: - Long Press Gest Recog
+    func endTriggered() {
+        finish = true
+    }
+
 }
 
