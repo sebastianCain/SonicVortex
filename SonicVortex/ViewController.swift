@@ -9,22 +9,101 @@
 //import SuperpoweredIOSAudioIO
 
 import UIKit
+import MapKit
+import CoreLocation
 
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var play: UIButton!
     @IBOutlet weak var cadenceLabel: UILabel!
     @IBOutlet weak var bpmCircle: UIView!
+    @IBOutlet weak var mapView: MKMapView!
     var displayLink: CADisplayLink!
     
     var superpowered = Superpowered()
+    
+    
+    let manager = CLLocationManager()
+    var previousLocation : CLLocation!
+    
+    var originalSettingsSet = false
+    
+    var annotations = [CLLocationCoordinate2D]()
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var location = locations[0]
+        print("1")
+        if locations.count > 1 {
+            print("2")
+            location = locations.last!
+        }
+        
+        if !originalSettingsSet {
+            let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01,0.01)
+            let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
+            let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+            mapView.setRegion(region, animated: true)
+            originalSettingsSet = true
+        }
+        
+        mapView.showsUserLocation = true
+        
+        if (previousLocation as CLLocation?) != nil {
+            if previousLocation.distance(from: location) > 50 {
+                addAnnotationsOnMap(locationToPoint: location)
+                previousLocation = location
+            }
+        } else {
+            addAnnotationsOnMap(locationToPoint: location)
+            previousLocation = location
+        }
+
+        let polyline = MKPolyline(coordinates: &annotations, count: annotations.count)
+        mapView.add(polyline)
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if (overlay is MKPolyline) {
+            let pr = MKPolylineRenderer(overlay: overlay)
+            pr.strokeColor = UIColor.red
+            pr.lineWidth = 5
+            return pr
+        }
+        return MKOverlayRenderer()
+    }
+    
+    func addAnnotationsOnMap(locationToPoint: CLLocation) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationToPoint.coordinate
+        let geoCoder = CLGeocoder ()
+        geoCoder.reverseGeocodeLocation(locationToPoint, completionHandler: { (placemarks, error) -> Void in
+            if let p = placemarks, p.count > 0 {
+                let placemark = p[0]
+                var addressDictionary = placemark.addressDictionary;
+                annotation.title = addressDictionary?["Name"] as? String
+            }
+        })
+        annotations.append(annotation.coordinate)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         superpowered.toggle()
         superpowered.togglePlayback()
+        
+        //Map stuff//
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.mapType = MKMapType(rawValue: 0)!
+        mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+        
         //CoreMotionInterface.beginTracking()
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "cad"), object: nil, queue: OperationQueue.main, using: { notif in
             let cadence = (notif.object as! NSNumber).floatValue
