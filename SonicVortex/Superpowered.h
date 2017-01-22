@@ -15,6 +15,6 @@
 - (void)seekTo:(float)percent; // Jump to a specific position.
 
 - (void)toggle; // Start/stop Superpowered.
-- (bool)toggleFx; // Enable/disable fx.
+- (bool)toggleFx:(float)cadence; // Enable/disable fx.
 
 @end

@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var play: UIButton!
     @IBOutlet weak var cadenceLabel: UILabel!
     @IBOutlet weak var bpmCircle: UIView!
+    var displayLink: CADisplayLink!
+    
     var superpowered = Superpowered()
     
     override func viewDidLoad() {
@@ -53,8 +55,36 @@ class ViewController: UIViewController {
         
         bpmCircle.layer.addSublayer(circLayer)
         
+        displayLink = CADisplayLink(target: self, selector: #selector(ViewController.onDisplayLink))
+        displayLink.preferredFramesPerSecond = 1
+        displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        
     }
-
+    
+    func onDisplayLink() {
+        // Get the frequency values.
+        let frequencies = UnsafeMutablePointer<Float>.allocate(capacity: 8)
+        superpowered.getFrequencies(frequencies)
+        
+        // Wrapping the UI changes in a CATransaction block like this prevents animation/smoothing.
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0)
+        CATransaction.setDisableActions(true)
+        
+        // Set the dimension of every frequency bar.
+        let originY:CGFloat = self.view.frame.size.height - 20
+        let width:CGFloat = (self.view.frame.size.width - 47) / 8
+        var frame:CGRect = CGRect(x: 20, y: 0, width: width, height: 0)
+        for n in 0...7 {
+            frame.size.height = CGFloat(frequencies[n]) * 4000
+            frame.origin.y = originY - frame.size.height
+            frame.origin.x += width + 1
+        }
+        
+        CATransaction.commit()
+        frequencies.deallocate(capacity: 8)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

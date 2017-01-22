@@ -41,6 +41,7 @@
 		0A4084EF1E333B7800B2412D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0A4084F11E333B8F00B2412D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		0A4084F31E33C20C00B2412D /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		0A4084FC1E3412BA00B2412D /* SuperpoweredBandpassFilterbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredBandpassFilterbank.h; sourceTree = "<group>"; };
 		0A425E711E32FDBC00836261 /* SonicVortex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonicVortex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A425E741E32FDBD00836261 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A425E761E32FDBD00836261 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		0A425E8A1E3303FE00836261 /* Superpowered */ = {
 			isa = PBXGroup;
 			children = (
+				0A4084FC1E3412BA00B2412D /* SuperpoweredBandpassFilterbank.h */,
 				0A425E931E3303FE00836261 /* libSuperpoweredAudioIOS.a */,
 				0A425E971E3303FE00836261 /* SuperpoweredAdvancedAudioPlayer.h */,
 				0A4084E81E33393400B2412D /* SuperpoweredFX.h */,
