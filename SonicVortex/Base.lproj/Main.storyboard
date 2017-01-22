@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,6 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oRE-o1-z0Z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5q-vb-OBk">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.24959867294520549" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mna-cf-xHG">
                                 <rect key="frame" x="152" y="249" width="70" height="70"/>
                                 <constraints>
@@ -44,10 +51,6 @@
                                     <constraint firstAttribute="width" constant="150" id="lkY-p6-5nr"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oRE-o1-z0Z">
-                                <rect key="frame" x="0.0" y="14" width="376" height="376"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7iE-KK-4Fb">
                                 <rect key="frame" x="87" y="383" width="200" height="200"/>
                                 <constraints>
@@ -56,14 +59,21 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="x5q-vb-OBk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="6KH-md-Ys1"/>
+                            <constraint firstItem="x5q-vb-OBk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="6xW-vc-s0l"/>
+                            <constraint firstItem="oRE-o1-z0Z" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="9xN-SM-tpu"/>
                             <constraint firstItem="7iE-KK-4Fb" firstAttribute="centerY" secondItem="CdS-kn-JQB" secondAttribute="centerY" id="G4t-5Y-w8v"/>
                             <constraint firstItem="Mna-cf-xHG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="IvT-1h-2Xn"/>
                             <constraint firstItem="CdS-kn-JQB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J7f-Z7-0Li"/>
                             <constraint firstItem="Mna-cf-xHG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8v-qe-GTy"/>
                             <constraint firstItem="CdS-kn-JQB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="L0y-o6-2oC"/>
+                            <constraint firstItem="oRE-o1-z0Z" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MpO-AP-hEl"/>
                             <constraint firstItem="gaC-OJ-0QP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mql-gT-0Wl"/>
+                            <constraint firstItem="x5q-vb-OBk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NgW-Yg-ZAO"/>
+                            <constraint firstItem="oRE-o1-z0Z" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Odm-zy-vDv"/>
+                            <constraint firstItem="oRE-o1-z0Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TFf-68-d2p"/>
+                            <constraint firstItem="x5q-vb-OBk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ant-Gq-H8e"/>
                             <constraint firstItem="gaC-OJ-0QP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="m9Y-ME-puL"/>
                             <constraint firstItem="7iE-KK-4Fb" firstAttribute="centerX" secondItem="CdS-kn-JQB" secondAttribute="centerX" id="vqA-Vg-bS0"/>
                         </constraints>
