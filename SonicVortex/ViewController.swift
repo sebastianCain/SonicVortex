@@ -14,16 +14,25 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    
+    @IBOutlet weak var startLayer: UIView!
+    @IBOutlet weak var runLayer: UIView!
+    
+    @IBOutlet weak var start: UIButton!
     @IBOutlet weak var vizLayer: UIView!
     @IBOutlet weak var play: UIButton!
     @IBOutlet weak var cadenceLabel: UILabel!
     @IBOutlet weak var bpmCircle: UIView!
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var playY: NSLayoutConstraint!
+    @IBOutlet weak var vizY: NSLayoutConstraint!
+    @IBOutlet weak var startY: NSLayoutConstraint!
+    
     var displayLink: CADisplayLink!
     var circlez = [CALayer]()
     
     var superpowered = Superpowered()
-    
     
     let manager = CLLocationManager()
     var previousLocation : CLLocation!
@@ -88,8 +97,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         annotations.append(annotation.coordinate)
     }
     
+    override func viewWillLayoutSubviews() {
+        playY.constant = -150
+        vizY.constant = -150
+        startY.constant = -150
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         superpowered.toggle()
         superpowered.togglePlayback()
@@ -116,7 +132,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         })
         //gradient.setNeedsDisplay()
         
-        play.layer.cornerRadius = 310
+        start.layer.cornerRadius = 75
+        play.layer.borderColor = UIColor.white.cgColor
+        play.layer.borderWidth = 7
+        
+        play.layer.cornerRadius = 30
         play.layer.borderColor = UIColor.white.cgColor
         play.layer.borderWidth = 1
         play.imageEdgeInsets = UIEdgeInsetsMake(18.5, 19.5, 18.5, 17.5)
@@ -169,6 +189,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             circlez.append(circle)
         }
         
+        startLayer.alpha = 1.0
+        runLayer.alpha = 0.0
     }
     
     func onDisplayLink() {
