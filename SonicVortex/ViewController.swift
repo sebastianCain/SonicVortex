@@ -143,6 +143,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("elapsedTime: \(elapsedTime)")
         print("elapsedDist: \(elapsedDist)")
         print("=========")
+        
+        let avc = self.storyboard?.instantiateViewController(withIdentifier: "avc") as! AnalysisViewController
+        avc.time = elapsedTime
+        avc.dist = elapsedDist
+        self.show(avc, sender: self)
     }
     
     override func viewDidLoad() {

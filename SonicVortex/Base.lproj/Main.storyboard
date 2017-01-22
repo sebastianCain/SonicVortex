@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -149,6 +150,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="138.98050974512745"/>
+        </scene>
+        <!--Analysis View Controller-->
+        <scene sceneID="hMG-CI-2be">
+            <objects>
+                <viewController storyboardIdentifier="avc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t2k-l5-kCs" customClass="AnalysisViewController" customModule="SonicVortex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nbP-JO-A3d"/>
+                        <viewControllerLayoutGuide type="bottom" id="epH-Zw-6PS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Ow-RS-Cy2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsu-Ux-CRl">
+                                <rect key="frame" x="46" y="58" width="283" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elapsed Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-A9-35o">
+                                <rect key="frame" x="46" y="87" width="283" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zak-A9-35o" firstAttribute="top" secondItem="Qsu-Ux-CRl" secondAttribute="bottom" constant="8" id="BD3-IS-by6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zak-A9-35o" secondAttribute="trailing" constant="30" id="DzP-K8-RlE"/>
+                            <constraint firstItem="Qsu-Ux-CRl" firstAttribute="top" secondItem="nbP-JO-A3d" secondAttribute="bottom" constant="38" id="HwT-0l-1Oy"/>
+                            <constraint firstItem="Zak-A9-35o" firstAttribute="leading" secondItem="6Ow-RS-Cy2" secondAttribute="leadingMargin" constant="30" id="iYC-P0-CUj"/>
+                            <constraint firstItem="Qsu-Ux-CRl" firstAttribute="leading" secondItem="6Ow-RS-Cy2" secondAttribute="leadingMargin" constant="30" id="sIl-2o-4Wx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qsu-Ux-CRl" secondAttribute="trailing" constant="30" id="zyn-Cz-Opf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="distLabel" destination="Zak-A9-35o" id="WKU-GK-bc3"/>
+                        <outlet property="timeLabel" destination="Qsu-Ux-CRl" id="MwO-BX-UTi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bz0-mV-Wuu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>
