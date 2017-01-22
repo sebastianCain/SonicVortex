@@ -27,6 +27,8 @@
 		0A425ECC1E3306BA00836261 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A425ECB1E3306BA00836261 /* CoreMotion.framework */; };
 		0A425ECF1E3331C700836261 /* Superpowered.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A425ECE1E3331C700836261 /* Superpowered.mm */; };
 		60079C5D1E333FF700B79144 /* CoreMotionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60079C5C1E333FF700B79144 /* CoreMotionInterface.swift */; };
+		6062FE351E3442DE0013B1D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6062FE341E3442DE0013B1D4 /* CoreLocation.framework */; };
+		6062FE371E3458FA0013B1D4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6062FE361E3458FA0013B1D4 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		0A425ECD1E332A6500836261 /* SonicVortex-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SonicVortex-Swift.h"; sourceTree = "<group>"; };
 		0A425ECE1E3331C700836261 /* Superpowered.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Superpowered.mm; sourceTree = "<group>"; };
 		60079C5C1E333FF700B79144 /* CoreMotionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreMotionInterface.swift; sourceTree = "<group>"; };
+		6062FE341E3442DE0013B1D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6062FE361E3458FA0013B1D4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6062FE351E3442DE0013B1D4 /* CoreLocation.framework in Frameworks */,
 				0A4084F21E333B8F00B2412D /* MediaPlayer.framework in Frameworks */,
 				0A4084F01E333B7800B2412D /* CoreGraphics.framework in Frameworks */,
 				0A4084EE1E333B6C00B2412D /* AudioToolbox.framework in Frameworks */,
@@ -79,6 +84,7 @@
 				0A425ECC1E3306BA00836261 /* CoreMotion.framework in Frameworks */,
 				0A425ECA1E3306B200836261 /* AVKit.framework in Frameworks */,
 				0A425EC81E3306AC00836261 /* AVFoundation.framework in Frameworks */,
+				6062FE371E3458FA0013B1D4 /* MapKit.framework in Frameworks */,
 				0A425EC61E3306A600836261 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +150,8 @@
 		0A425EC41E3306A600836261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6062FE361E3458FA0013B1D4 /* MapKit.framework */,
+				6062FE341E3442DE0013B1D4 /* CoreLocation.framework */,
 				0A4084F11E333B8F00B2412D /* MediaPlayer.framework */,
 				0A4084EF1E333B7800B2412D /* CoreGraphics.framework */,
 				0A4084ED1E333B6C00B2412D /* AudioToolbox.framework */,
@@ -189,8 +197,13 @@
 				TargetAttributes = {
 					0A425E701E32FDBC00836261 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9XWYL3K4YT;
+						DevelopmentTeam = HV4B5F752N;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -359,7 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9XWYL3K4YT;
+				DEVELOPMENT_TEAM = HV4B5F752N;
 				INFOPLIST_FILE = SonicVortex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -378,7 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9XWYL3K4YT;
+				DEVELOPMENT_TEAM = HV4B5F752N;
 				INFOPLIST_FILE = SonicVortex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

@@ -17,6 +17,38 @@
             endingLineNumber = "22"
             landmarkName = "beginTracking()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SonicVortex.CoreMotionInterface.(beginTracking () -&gt; ()).(closure #1)"
+                  moduleName = "SonicVortex"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahfichter/SonicVortex/SonicVortex/CoreMotionInterface.swift"
+                  timestampString = "506749473.070388"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SonicVortex.CoreMotionInterface.(beginTracking () -&gt; ()).(closure #1)"
+                  moduleName = "SonicVortex"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahfichter/SonicVortex/SonicVortex/CoreMotionInterface.swift"
+                  timestampString = "506749473.074367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
