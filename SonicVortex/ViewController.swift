@@ -123,6 +123,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         manager.stopUpdatingLocation()
         
         elapsedTime = endTime - startTime
+        print(elapsedTime)
+        print(elapsedDist)
     }
     
     override func viewDidLoad() {
